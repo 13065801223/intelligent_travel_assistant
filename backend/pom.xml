@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.helloagents</groupId>
+    <artifactId>travel-bff</artifactId>
+    <version>1.0.0</version>
+    <name>travel-bff</name>
+    <description>智能旅行助手 BFF：冻结前端契约、超时与错误边界、Unsplash 集成</description>
+
+    <properties>
+        <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--
+          仅测试范围：JUnit 对齐到本机 Maven 缓存里齐全的 5.10.3。
+          Spring Boot 3.3.5 默认管理 5.10.5，但本机只读缓存里 junit-platform-launcher
+          只有 1.10.1/1.10.2/1.10.3/1.12.2（缺 1.10.5），且该沙箱 ~/.m2 不可写、
+          外层下载被拦（mvnw 的 .NET DownloadFile 失败）。改成 5.10.3 后
+          jupiter / platform-commons / platform-engine / platform-launcher 全部命中缓存，
+          测试可完全离线运行。生产依赖与运行期行为不受影响。
+        -->
+        <junit-jupiter.version>5.10.3</junit-jupiter.version>
+    </properties>
+
+    <dependencies>
+        <!-- Web MVC + Jackson + 内嵌 Tomcat；RestClient 也在 spring-web 里，不需要 webflux -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- @Valid / @NotBlank / @Min... 对应文档 §3.1 的请求约束 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- /actuator/health：并进 Agent 健康状态 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- JUnit5 + AssertJ + Mockito + MockRestServiceServer + spring-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

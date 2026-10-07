@@ -1,0 +1,10 @@
+{
+  "city": "杭州",
+  "start_date": "2026-10-10",
+  "end_date": "2026-10-10",
+  "travel_days": 1,
+  "transportation": "公共交通",
+  "accommodation": "经济型酒店",
+  "preferences": ["自然风光", "美食", "休闲"],
+  "free_text_input": ""
+}

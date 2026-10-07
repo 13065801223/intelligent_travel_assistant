@@ -1,0 +1,119 @@
+{
+  "success": true,
+  "message": "旅行计划生成成功",
+  "data": {
+    "city": "杭州",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-10",
+    "overall_suggestions": "西湖周末人流较大，建议 8:00 前抵达断桥；灵隐寺需提前在公众号预约。",
+    "days": [
+      {
+        "date": "2026-10-10",
+        "day_index": 0,
+        "description": "第1天：上午环西湖，午后灵隐寺，晚间清河坊觅食。",
+        "transportation": "公共交通",
+        "accommodation": "经济型酒店",
+        "hotel": {
+          "name": "杭州西湖湖滨某酒店",
+          "address": "浙江省杭州市上城区平海路 12 号",
+          "location": {
+            "longitude": 120.166,
+            "latitude": 30.253
+          },
+          "price_range": "400-600元",
+          "rating": "4.6",
+          "distance": "距断桥约 1.2 公里",
+          "type": "经济型酒店",
+          "estimated_cost": 480
+        },
+        "attractions": [
+          {
+            "name": "西湖风景名胜区",
+            "address": "浙江省杭州市西湖区龙井路 1 号",
+            "location": {
+              "longitude": 120.130396,
+              "latitude": 30.259242
+            },
+            "visit_duration": 180,
+            "description": "三面云山一面城，可环湖步行或乘游船，苏堤春晓为经典机位。",
+            "category": "风景名胜",
+            "rating": 4.8,
+            "photos": [],
+            "poi_id": "B023B0A0AB",
+            "image_url": null,
+            "ticket_price": 0
+          },
+          {
+            "name": "灵隐寺",
+            "address": "浙江省杭州市西湖区法云弄 1 号",
+            "location": {
+              "longitude": 120.101,
+              "latitude": 30.241
+            },
+            "visit_duration": 120,
+            "description": "江南著名古刹，飞来峰造像与大殿轴线值得细看，需先购飞来峰景区门票。",
+            "category": "宗教文化",
+            "rating": 4.7,
+            "photos": [],
+            "poi_id": "B023B0A0AC",
+            "image_url": null,
+            "ticket_price": 75
+          }
+        ],
+        "meals": [
+          {
+            "type": "breakfast",
+            "name": "片儿川",
+            "address": "浙江省杭州市上城区河坊街",
+            "location": {
+              "longitude": 120.169,
+              "latitude": 30.24
+            },
+            "description": "杭州传统汤面，雪菜笋片配里脊。",
+            "estimated_cost": 25
+          },
+          {
+            "type": "lunch",
+            "name": "西湖醋鱼套餐",
+            "address": "浙江省杭州市西湖区孤山路",
+            "location": {
+              "longitude": 120.145,
+              "latitude": 30.253
+            },
+            "description": "景区内餐厅，建议 11:30 前入座避开高峰。",
+            "estimated_cost": 90
+          },
+          {
+            "type": "dinner",
+            "name": "知味观小笼与猫耳朵",
+            "address": "浙江省杭州市上城区仁和路",
+            "location": {
+              "longitude": 120.167,
+              "latitude": 30.246
+            },
+            "description": "老字号杭帮点心，适合两人分食。",
+            "estimated_cost": 50
+          }
+        ]
+      }
+    ],
+    "weather_info": [
+      {
+        "date": "2026-10-10",
+        "day_weather": "晴",
+        "night_weather": "多云",
+        "day_temp": 25,
+        "night_temp": 15,
+        "wind_direction": "南风",
+        "wind_power": "1-3级"
+      }
+    ],
+    "budget": {
+      "total_attractions": 75,
+      "total_hotels": 480,
+      "total_meals": 165,
+      "total_transportation": 40,
+      "total": 760
+    }
+  }
+}

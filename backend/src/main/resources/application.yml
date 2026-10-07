@@ -1,0 +1,51 @@
+server:
+  port: 8000                     # 硬约束 C2：前端 Result.vue:435 把后端地址硬编码为 localhost:8000，改端口会让图片接口直接失败
+  tomcat:
+    threads:
+      max: 200
+
+spring:
+  application:
+    name: travel-bff
+  threads:
+    virtual:
+      enabled: true              # Java 21：BFF 要阻塞等待 Agent 数分钟，用虚拟线程避免占满平台线程
+  mvc:
+    problemdetails:
+      enabled: false             # 必须 false：打开后错误体会变成 RFC7807，前端 api.ts:47 读的 data.detail 会丢失
+  jackson:
+    default-property-inclusion: always      # 必须 always：若用 non_null，days/attractions 字段会整个消失，前端 .forEach 直接抛 TypeError
+    deserialization:
+      fail-on-unknown-properties: false     # Agent 由 LLM 产出 JSON，可能多带字段；多带就忽略，不要 500
+
+app:
+  agent:
+    base-url: ${AGENT_BASE_URL:http://127.0.0.1:8100}
+    plan-path: /internal/v1/trip-plan       # Agent 内部契约：返回【裸 TripPlan】，没有 {success,message,data} 外壳
+    health-path: /internal/v1/health
+    connect-timeout: 3s                     # 本机/内网，连不上要立刻失败（503），不要耗预算
+    read-timeout: 590s                      # 必须 < 前端 axios 600s（R1-a），否则用户只会看到浏览器裸超时，拿不到我们给的 504 文案
+  unsplash:
+    base-url: https://api.unsplash.com
+    access-key: ${UNSPLASH_ACCESS_KEY:}
+    connect-timeout: 3s
+    read-timeout: 8s                        # 图片只是增强项，不能拖慢结果页
+  cors:
+    # 4 条：前端页面可能在 localhost 或 127.0.0.1 上打开，端口 5173(vite)/3000
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://127.0.0.1:3000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always        # 让 /actuator/health 显示 Agent 与 MCP 工具数（排障关键）
+
+logging:
+  level:
+    com.helloagents.travel: INFO
+  #   org.springframework.web.client: DEBUG   # 排查 Agent 调用问题时打开
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%X{traceId:-}] %logger{36} - %msg%n"   # traceId 串联 BFF ↔ Agent 两端日志

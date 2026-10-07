@@ -1,0 +1,53 @@
+{
+  "_comment": "漂移样本（RED 反证输入）：故意违反 7 条冻结契约，用来证明 tools/check_contract.py 真的会失败。禁止作为正常样本使用。",
+  "success": "true",
+  "message": "旅行计划生成成功",
+  "data": {
+    "city": "杭州",
+    "start_date": "2026-10-10",
+    "end_date": "2026-10-11",
+    "overall_suggestions": "漂移样本，仅用于反证检查器。",
+    "tips": "该字段不在冻结契约内，应触发 WARN",
+    "days": [
+      {
+        "date": "2026-10-10",
+        "day_index": 1,
+        "description": "第1天",
+        "transportation": "公共交通",
+        "accommodation": "经济型酒店",
+        "attractions": null,
+        "hotel": {
+          "name": "某酒店",
+          "rating": 4.6
+        }
+      },
+      {
+        "date": "2026-10-11",
+        "day_index": 2,
+        "description": "第2天",
+        "transportation": "公共交通",
+        "accommodation": "经济型酒店",
+        "attractions": [],
+        "meals": []
+      }
+    ],
+    "weather_info": [
+      {
+        "date": "2026-10-10",
+        "day_weather": "晴",
+        "night_weather": "多云",
+        "day_temp": "25°C",
+        "night_temp": 15,
+        "wind_direction": "南风",
+        "wind_power": "1-3级"
+      }
+    ],
+    "budget": {
+      "total_attractions": 75,
+      "total_hotels": 480,
+      "total_meals": 165,
+      "total_transportation": 40,
+      "total": "760"
+    }
+  }
+}
